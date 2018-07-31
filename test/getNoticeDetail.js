@@ -3,11 +3,14 @@ const expect = require('chai').expect;
 const url = "mongodb://localhost:27017/";
 const MongoClient = require('mongodb').MongoClient;
 const mongo = require('kqudie')(url);
-
-const notice = require('../lib');
+collect_mapped={
+    0:{content:'fac'},
+    1:{content:'fbc'}
+}
+const notice = require('../lib')(collect_mapped);
 
 const DATABASE = "ISInformationPlatform";
-const COLLECTION = "noticelist_1";
+const COLLECTION = "fbc";
 
 describe('getNoticeDetail', function () {
     before(async function () {
