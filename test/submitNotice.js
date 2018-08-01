@@ -2,10 +2,10 @@ const expect = require('chai').expect;
 
 const url = "mongodb://localhost:27017/";
 const MongoClient = require('mongodb').MongoClient;
-collect_mapped={
-    0:{content:'fac'},
-    1:{content:'fbc'}
-}
+var collect_mapped=[
+    {section_id:"0",content:'fac'},
+    {section_id:"1",content:'fbc'}
+]
 const notice = require('../lib')(collect_mapped);
 const DATABASE = "ISInformationPlatform";
 const COLLECTION = "fbc";
