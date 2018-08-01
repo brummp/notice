@@ -2,14 +2,11 @@ const expect = require('chai').expect;
 
 const url = "mongodb://localhost:27017/";
 const MongoClient = require('mongodb').MongoClient;
-var collect_mapped=[
-    {section_id:"0",content:'fac'},
-    {section_id:"1",content:'fbc'}
-]
-const notice = require('../lib')(collect_mapped);
+var config = require('./config.js');
+const notice = require('../lib')(config);
 
 const DATABASE = "ISInformationPlatform";
-const COLLECTION = "fbc";
+const COLLECTION = "notice_normal";
 
 describe('updateNoticeList', function () {
     before(async function () {
