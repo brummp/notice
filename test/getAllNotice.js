@@ -16,25 +16,41 @@ describe('getAllNotice', function () {
 
             await collect.deleteMany({});
             await collect.insertMany([
-                { a: 1 }, { a: 2 }, { a: 3 }
+                { a: 1 }, { a: 2 }, { a: 3 } , { a : 4 } ,{ a : 5 }
             ]);
         } catch (err) {
             throw err;
         }
     });
 
-    it('test', async function () {
-        var opt={
-            page_num:2
-        };
+    it('test1', async function () {
+
         let notification = await notice.getAllNotice(1);
-        let first = notification[0];
-        let second = notification[1];
-        let third = notification[2];
+        let first = notification.notice_list[0];
+        let second = notification.notice_list[1];
+        let third = notification.notice_list[2];
+        let fouth = notification.notice_list[3];
+        let fifth = notification.notice_list[4];
 
         expect(first.a).to.be.equal(1);
         expect(second.a).to.be.equal(2);
-        expect(third.a).to.be.equal(3)
+        expect(third.a).to.be.equal(3);
+        expect(fouth.a).to.be.equal(4);
+        expect(fifth.a).to.be.equal(5);
+        expect(notification.total_page_num).to.be.equal(2);
+    })
+    
+    it('test2', async function () {
+        var opt={
+            page_num:2
+        };
+        let notification = await notice.getAllNotice(1,opt);
+        let first = notification.notice_list[0];
+        let second = notification.notice_list[1];
+
+        expect(first.a).to.be.equal(4);
+        expect(second.a).to.be.equal(5);
+        expect(notification.total_page_num).to.be.equal(2);
     })
 });
 
