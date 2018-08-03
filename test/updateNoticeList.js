@@ -32,11 +32,14 @@ describe('updateNoticeList', function () {
             "notice_author": "she",
             "notice_content": "hello",
         };
+        var opt={
+            page_num:1
+        };
 
         try {
             await notice.submitNotice(1, data1);
-            let post_id = await notice.getAllNotice(1);
-            await notice.updateNoticeList(1,post_id[0]['_id'],data);
+            let post_id = await notice.getAllNotice(1,opt);
+            await notice.updateNoticeList(1,post_id.page_result[0]['_id'],data);
             let connect = await getConnect();
             var result = await connect.db(DATABASE).collection(COLLECTION).find({}).sort({}).toArray();
 

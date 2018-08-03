@@ -64,5 +64,6 @@ module.exports = {
         collection: "notice_work",
         title: "实习信息"
       }
-    ]
+    ],
+    notice_item_number_a_page:3,
   };
