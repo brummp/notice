@@ -9,14 +9,14 @@ const notice = require('../lib')(config);
 const DATABASE = "ISInformationPlatform"
 const COLLECTION = "notice_normal"
 
-describe('getAllNotice', function () {
+describe('getNotice', function () {
     before(async function () {
         try {
             let collect = await getCollect();
 
             await collect.deleteMany({});
             await collect.insertMany([
-                { a: 1 }, { a: 2 }, { a: 3 }
+                { a: 1 }, { a: 2 }, { a: 3 },{ a : 4 },{ a : 5 }
             ]);
         } catch (err) {
             throw err;
@@ -27,14 +27,13 @@ describe('getAllNotice', function () {
         var opt={
             page_num:2
         };
-        let notification = await notice.getAllNotice(1);
-        let first = notification[0];
-        let second = notification[1];
-        let third = notification[2];
+        let notification = await notice.getNotice(1,opt);
+        let first = notification.page_result[0];
+        let second = notification.page_result[1];
 
-        expect(first.a).to.be.equal(1);
-        expect(second.a).to.be.equal(2);
-        expect(third.a).to.be.equal(3)
+        expect(first.a).to.be.equal(4);
+        expect(second.a).to.be.equal(5);
+        expect(notification.total_page_num).to.be.equal(2)
     })
 });
 
